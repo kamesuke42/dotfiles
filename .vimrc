@@ -20,4 +20,5 @@ Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'dense-analysis/ale'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
