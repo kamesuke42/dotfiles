@@ -16,18 +16,19 @@ set laststatus=2
 set colorcolumn=80
 highlight ColorColumn ctermbg=5 guibg=lightgrey
 
+set background=dark
+colorscheme hybrid
+
 inoremap jj <ESC>
 
 call plug#begin()
-Plug 'rust-lang/rust.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
-Plug 'dense-analysis/ale'
-Plug 'airblade/vim-gitgutter'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'w0ng/vim-hybrid'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
-augroup fileTypeIndent
-	autocmd!
-	autocmd BufNewFile,BufRead *.go setlocal tabstop=8 shiftwidth=8 noexpandtab
-	autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 shiftwidth=2
-augroup END
+" linterで警告、エラーが発生している行にカーソルを当てると
+" 詳細を表示
+let g:lsp_diagnostics_echo_cursor=1
