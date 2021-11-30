@@ -3,3 +3,6 @@
 - nvim
   - dein.vim
 - fzf
+
+- font
+  - PlemolJP
