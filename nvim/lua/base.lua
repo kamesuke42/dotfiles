@@ -14,3 +14,4 @@ vim.opt.shiftwidth    = 4
 vim.opt.swapfile      = false
 vim.opt.backup        = false
 vim.opt.background    = 'dark'
+vim.opt.colorcolumn   = { 80, 100 }
