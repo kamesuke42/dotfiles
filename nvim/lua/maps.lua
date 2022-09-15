@@ -1,5 +1,7 @@
 local keymap = vim.keymap
 
+vim.g.mapleader = ' '
+
 keymap.set('i', 'jj', '<ESC>')
 
 -- Increment / Decrement
