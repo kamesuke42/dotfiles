@@ -11,7 +11,18 @@ vim.opt.expandtab     = true
 vim.opt.tabstop       = 4
 vim.opt.softtabstop   = 4
 vim.opt.shiftwidth    = 4
-vim.opt.swapfile      = false
-vim.opt.backup        = false
 vim.opt.background    = 'dark'
 vim.opt.colorcolumn   = { 80, 100 }
+vim.opt.wildmenu      = true
+
+-- Search
+vim.opt.ignorecase    = true
+vim.opt.smartcase     = true
+vim.opt.incsearch     = true
+vim.opt.hlsearch      = true
+
+-- File
+vim.opt.autoread      = true
+vim.opt.swapfile      = false
+vim.opt.hidden        = true
+vim.opt.backup        = false

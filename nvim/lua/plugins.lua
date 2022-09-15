@@ -16,4 +16,13 @@ require('jetpack').startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   use { 'junegunn/fzf', run = 'call fzf#install()' }
   use { 'junegunn/fzf.vim' }
+  use 'cohama/lexima.vim'
+  use 'nvim-lua/plenary.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'airblade/vim-gitgutter'
+  use 'tpope/fugitive.vim'
+  use 'vim-easymotion/vim-easymotion'
+  use 'machakann/vim-sandwich'
+  use 'ray-x/lsp_signature.nivm'
+  use 'folke/trouble.nvim'
 end)
