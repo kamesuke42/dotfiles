@@ -20,11 +20,11 @@ require('jetpack').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'tpope/fugitive.vim'
-  use 'vim-easymotion/vim-easymotion'
   use 'machakann/vim-sandwich'
   use 'ray-x/lsp_signature.nivm'
   use 'folke/trouble.nvim'
   use 'glepnir/lspsaga.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'TimUntersberger/neogit'
+  use 'phaazon/hop.nvim'
 end)
