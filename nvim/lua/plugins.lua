@@ -12,8 +12,6 @@ require("jetpack.packer").startup(function(use)
 	use("cohama/lexima.vim")
 	use("tpope/vim-fugitive")
 	use("machakann/vim-sandwich")
-	use("ray-x/lsp_signature.nvim")
-	use("folke/trouble.nvim")
 	use("lewis6991/gitsigns.nvim")
 	use("TimUntersberger/neogit")
 	use("phaazon/hop.nvim")
@@ -41,18 +39,22 @@ require("jetpack.packer").startup(function(use)
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("jose-elias-alvarez/typescript.nvim")
 	use("onsails/lspkind.nvim")
+	use("ray-x/lsp_signature.nvim")
+	use("folke/trouble.nvim")
 
 	-- formatting
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("jayp0521/mason-null-ls.nvim")
 
 	-- treesitter
-	use("windwp/nvim-autopairs")
-	use("windwp/nvim-ts-autotag")
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
+	use("windwp/nvim-ts-autotag")
+	use("windwp/nvim-autopairs")
+
+	use("folke/tokyonight.nvim")
 end)
