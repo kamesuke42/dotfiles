@@ -1,0 +1,2 @@
+PROJ_ROOT=$1
+echo $PROJ_ROOT

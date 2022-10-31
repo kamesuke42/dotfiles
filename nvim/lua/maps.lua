@@ -15,3 +15,13 @@ keymap.set('n', 'sv', ':vsplit<cr><C-w>w', { silent = true })
 keymap.set('n', 'te', ':tabedit<cr>', { silent = true })
 keymap.set('n', 'tn', 'gt')
 keymap.set('n', 'tp', 'gT')
+
+-- neo-tree
+vim.keymap.set('n', '<leader>,', '<cmd>Neotree<cr>')
+
+--telescope
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { silent = true })
+vim.keymap.set('n', '<leader>fs', '<cmd>Telescope live_grep<cr>', { silent = true })
+vim.keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', { silent = true })
+vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { silent = true })
+vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { silent = true })
