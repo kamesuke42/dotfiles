@@ -18,6 +18,7 @@ vim.opt.wildmenu = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.o.wrap = false
 
 -- Search
 vim.opt.ignorecase = true

@@ -53,7 +53,14 @@ require("jetpack.packer").startup(function(use)
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
-	use("windwp/nvim-ts-autotag")
+	use({
+		"windwp/nvim-ts-autotag",
+		branch = "main",
+		opt = true,
+		run = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	})
 	use("windwp/nvim-autopairs")
 
 	use("folke/tokyonight.nvim")
