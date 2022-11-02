@@ -1,12 +1,12 @@
-vim.cmd("packadd vim-jetpack")
+vim.cmd([[packadd packer.nvim]])
 
-require("jetpack.packer").startup(function(use)
-	use({ "tani/vim-jetpack", opt = 1 })
+require("packer").startup(function(use)
+	use("wbthomason/packer.nvim")
 
 	use("nvim-lua/plenary.nvim")
 	use("MunifTanjim/nui.nvim")
 
-	use({ "RRethy/nvim-base16" })
+	use("rcarriga/nvim-notify")
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "nvim-lualine/lualine.nvim" })
 	use("cohama/lexima.vim")
@@ -16,6 +16,7 @@ require("jetpack.packer").startup(function(use)
 	use("TimUntersberger/neogit")
 	use("phaazon/hop.nvim")
 	use("nvim-neo-tree/neo-tree.nvim")
+	use("folke/noice.nvim")
 
 	-- fuzzy finder
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -53,14 +54,7 @@ require("jetpack.packer").startup(function(use)
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
-	use({
-		"windwp/nvim-ts-autotag",
-		branch = "main",
-		opt = true,
-		run = function()
-			require("nvim-ts-autotag").setup()
-		end,
-	})
+	use("windwp/nvim-ts-autotag")
 	use("windwp/nvim-autopairs")
 
 	use("folke/tokyonight.nvim")

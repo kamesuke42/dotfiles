@@ -19,6 +19,7 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.o.wrap = false
+vim.o.mouse = "nv"
 
 -- Search
 vim.opt.ignorecase = true

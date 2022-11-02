@@ -5,6 +5,6 @@
 -- repository: https://github.com/kamesuke42/dotfiles
 --
 
-require("base")
 require("plugins")
+require("base")
 require("maps")
