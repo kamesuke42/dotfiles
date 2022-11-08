@@ -17,7 +17,6 @@ mason.setup()
 
 mason_lspconfig.setup({
 	ensure_installed = {
-		"astro-language-server",
 		"clangd",
 		"cssls",
 		"gopls",
@@ -36,7 +35,9 @@ mason_null_ls.setup({
 	ensure_installed = {
 		"black",
 		"eslint_d",
+		"phpcsfixer",
 		"prettier",
 		"stylua",
+		"yamlfmt",
 	},
 })
