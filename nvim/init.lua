@@ -60,6 +60,13 @@ require("lazy").setup({
     lazy = false,
     priority = 1000,
     config = function()
+      require("tokyonight").setup({
+        transparent = true,
+        styles = {
+          comments = { italic = false },
+          keywords = { italic = false },
+        }
+      })
       vim.cmd([[colorscheme tokyonight]])
     end
   },
@@ -179,6 +186,7 @@ require("lazy").setup({
         "rust_analyzer",
         "tsserver",
         "astro",
+        "pyright",
         "kotlin_language_server",
       }
       local mason_lspconfig = require("mason-lspconfig")
@@ -326,6 +334,7 @@ require("lazy").setup({
   },
   {
     "j-hui/fidget.nvim",
+    tag = "legacy",
     event = "BufReadPre",
     config = function()
       require("fidget").setup {}
