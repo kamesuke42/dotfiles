@@ -140,6 +140,7 @@ return {
       require("mason").setup()
       require("neodev").setup()
       require("trouble").setup()
+      vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true})
 
       saga.setup({})
       mason_lspconfig.setup({
@@ -318,19 +319,6 @@ return {
     end
   },
   {
-    'TimUntersberger/neogit',
-    cmd = 'Neogit',
-    keys = {
-      { '<leader>g', '<cmd>Neogit kind=split<cr>', desc = 'Open Neogit' },
-    },
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    },
-    config = function()
-      require('neogit').setup()
-    end
-  },
-  {
     'stevearc/oil.nvim',
     opts = {},
     dependencies = {
@@ -340,5 +328,36 @@ return {
       require('oil').setup()
       vim.keymap.set('n', '<leader>-', require('oil').open, { desc = 'Open parent directory' })
     end,
+  },
+  {
+    "dstein64/vim-startuptime",
+    cmd = "StartupTime",
+    init = function ()
+      vim.g.startuptime_tries = 10
+    end
+  },
+  {
+    "sindrets/diffview.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    }
+  },
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+    config = function ()
+      vim.keymap.set("i", "<M-^>", "<Plug>(copilot-suggest)")
+    end
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function ()
+      require("nvim-surround").setup()
+    end
+  },
+  {
+    "lambdalisue/gin.vim"
   }
 }
