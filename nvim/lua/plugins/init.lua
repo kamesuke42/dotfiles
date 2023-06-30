@@ -15,23 +15,16 @@ return {
     end
   },
   {
-    "nvim-tree/nvim-tree.lua",
-    tag = "nightly",
-    cmd = "NvimTreeToggle",
-    keys = {
-      { "<leader>t", "<cmd>NvimTreeToggle<cr>", desc = "Toggle nvim-tree" },
-    },
-    config = function()
-      require("nvim-tree").setup()
-    end,
-  },
-  {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "kyazdani42/nvim-web-devicons",
     },
     config = function()
-      require("lualine").setup({})
+      require("lualine").setup({
+        options = {
+          theme = "tokyonight"
+        }
+      })
     end
   },
   {
