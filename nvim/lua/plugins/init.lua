@@ -1,17 +1,42 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    lazy = false,
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
-    config = function()
-      require("tokyonight").setup({
-        transparent = true,
-        styles = {
-          comments = { italic = false },
-          keywords = { italic = false },
+    config = function ()
+      require("catppuccin").setup({
+        transparent_background = true,
+        integrations = {
+          fidget = true,
+          gitsigns = true,
+          mason = true,
+          cmp = true,
+          native_lsp = {
+            enabled = true,
+            virtual_text = {
+                errors = { "italic" },
+                hints = { "italic" },
+                warnings = { "italic" },
+                information = { "italic" },
+            },
+            underlines = {
+                errors = { "underline" },
+                hints = { "underline" },
+                warnings = { "underline" },
+                information = { "underline" },
+            },
+            inlay_hints = {
+                background = true,
+            },
+          },
+          treesitter = true,
+          telescope = {
+            enabled = true,
+          },
+          lsp_trouble = true,
         }
       })
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd([[colorscheme catppuccin]])
     end
   },
   {
@@ -22,7 +47,7 @@ return {
     config = function()
       require("lualine").setup({
         options = {
-          theme = "tokyonight"
+          theme = "catppuccin"
         }
       })
     end
