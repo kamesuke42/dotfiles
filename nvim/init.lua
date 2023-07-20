@@ -21,26 +21,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "astro" },
-  callback = function()
-    vim.opt_local.expandtab = false
-    vim.opt_local.tabstop = 2
-    vim.opt_local.softtabstop = 2
-    vim.opt_local.shiftwidth = 2
-  end
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "go" },
-  callback = function()
-    vim.opt_local.expandtab = false
-    vim.opt_local.tabstop = 8
-    vim.opt_local.softtabstop = 8
-    vim.opt_local.shiftwidth = 8
-  end
-})
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
