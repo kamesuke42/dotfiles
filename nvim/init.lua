@@ -7,6 +7,7 @@ vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 8
 vim.opt.colorcolumn = { 80, 100 }
 vim.opt.termguicolors = true
+vim.opt.swapfile = false
 vim.opt.wrap = false
 vim.opt.list = true
 vim.opt.signcolumn = "yes"
