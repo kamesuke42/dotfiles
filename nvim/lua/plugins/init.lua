@@ -133,7 +133,6 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
       "folke/neodev.nvim",
-      "glepnir/lspsaga.nvim",
       "jose-elias-alvarez/null-ls.nvim",
       "nvim-lua/plenary.nvim",
       "folke/trouble.nvim",
@@ -152,7 +151,6 @@ return {
         "kotlin_language_server",
       }
       local mason_lspconfig = require("mason-lspconfig")
-      local saga = require("lspsaga")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       require("mason").setup()
@@ -160,7 +158,6 @@ return {
       require("trouble").setup()
       vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true})
 
-      saga.setup({})
       mason_lspconfig.setup({
         capabilities = capabilities,
         ensure_installed = servers,
@@ -316,9 +313,6 @@ return {
     end
   },
   {
-    "github/copilot.vim"
-  },
-  {
     "vim-denops/denops.vim"
   },
   {
@@ -359,13 +353,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim"
     }
-  },
-  {
-    "github/copilot.vim",
-    event = "InsertEnter",
-    config = function ()
-      vim.keymap.set("i", "<M-^>", "<Plug>(copilot-suggest)")
-    end
   },
   {
     "kylechui/nvim-surround",
