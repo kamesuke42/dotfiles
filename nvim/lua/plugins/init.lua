@@ -122,6 +122,10 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
         },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
       }
     end,
   },
@@ -252,6 +256,7 @@ return {
           null_ls.builtins.formatting.black,
         }
       })
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single"})
     end,
   },
   {
