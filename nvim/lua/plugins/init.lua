@@ -45,10 +45,20 @@ return {
       "kyazdani42/nvim-web-devicons",
     },
     config = function()
+      local lsp_names = function ()
+        local clients = {}
+        for _, client in ipairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+          table.insert(clients, client.name)
+        end
+        return ' ' .. table.concat(clients, ', ')
+      end
       require("lualine").setup({
         options = {
           theme = "catppuccin"
-        }
+        },
+        sections = {
+          lualine_c = { 'filename', lsp_names },
+        },
       })
     end
   },
