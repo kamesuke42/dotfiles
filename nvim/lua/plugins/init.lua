@@ -297,7 +297,15 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPost",
     config = function()
-      require("gitsigns").setup()
+      require("gitsigns").setup({
+        on_attach = function ()
+          vim.keymap.set('n', '<leader>hs', '<cmd>lua require"gitsigns".stage_hunk()<cr>', { silent = true })
+          vim.keymap.set('n', '<leader>hr', '<cmd>lua require"gitsigns".reset_hunk()<cr>', { silent = true })
+          vim.keymap.set('n', '<leader>hp', '<cmd>lua require"gitsigns".preview_hunk()<cr>', { silent = true })
+          vim.keymap.set('n', ']c', '<cmd>lua require"gitsigns".next_hunk()<cr>', { silent = true })
+          vim.keymap.set('n', '[c', '<cmd>lua require"gitsigns".previous_hunk()<cr>', { silent = true })
+        end
+      })
     end
   },
   {
