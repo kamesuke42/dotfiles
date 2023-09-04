@@ -11,7 +11,10 @@ vim.opt.swapfile = false
 vim.opt.wrap = false
 vim.opt.list = true
 vim.opt.signcolumn = "yes"
-vim.keymap.set("t", "<C-]>", "<C-\\><C-n>", { silent = true })
+
+vim.keymap.set("t", "<C-]>", "<C-\\><C-n>")
+vim.keymap.set("n", "<space>co", ":copen<cr>", { silent = true })
+vim.keymap.set("n", "<space>cl", ":cclose<cr>", { silent = true })
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "lua", "html", "json", "javascript", "typescript", "typescriptreact" },
