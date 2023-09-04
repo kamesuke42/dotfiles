@@ -63,3 +63,4 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 alias j="source $HOME/.local/share/bin/zjump"
+alias gtop="source $HOME/.local/share/bin/gtop.sh"
