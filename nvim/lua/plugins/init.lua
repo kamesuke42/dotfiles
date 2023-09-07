@@ -147,7 +147,6 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
       "folke/neodev.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
       "nvim-lua/plenary.nvim",
       "folke/trouble.nvim",
     },
@@ -155,14 +154,12 @@ return {
       local servers = {
         "denols",
         "lua_ls",
-        "intelephense",
         "html",
         "gopls",
         "rust_analyzer",
         "tsserver",
-        "astro",
         "pyright",
-        "kotlin_language_server",
+        "ruby_ls",
       }
       local mason_lspconfig = require("mason-lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -258,14 +255,6 @@ return {
           }
         end
       })
-      local null_ls = require("null-ls")
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.phpcsfixer,
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.black,
-        }
-      })
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single"})
     end,
   },
@@ -280,7 +269,7 @@ return {
       ts_update()
 
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "kotlin", "go", "lua", "html", "javascript", "css", "astro" },
+        ensure_installed = { "go", "lua", "html", "javascript", "css", "astro", "ruby" },
         autotag = {
           enable = true
         },
