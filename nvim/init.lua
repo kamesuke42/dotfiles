@@ -10,6 +10,7 @@ vim.opt.termguicolors = true
 vim.opt.swapfile = false
 vim.opt.wrap = false
 vim.opt.list = true
+vim.opt.listchars:append({ space = "∙", eol = "↲" })
 vim.opt.signcolumn = "yes"
 
 vim.keymap.set("t", "<C-]>", "<C-\\><C-n>")
