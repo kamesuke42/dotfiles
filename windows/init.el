@@ -43,12 +43,10 @@
 (setq org-todo-keywords
       '((sequence "INBOX(i)" "REMIND(r)" "TODAY(t)" "THIS WEEK(w)" "|" "DONE(d)" "SOMEDAY(s)")))
 
-(defun my-after-save-actions ()
+(defun convert-org-to-txt ()
   "Used in `after-save-hook`"
   (when (memq this-command '(save-buffer save-some-buffers))
     (if (eq major-mode 'org-mode) (write-region nil nil
 				   (replace-regexp-in-string "\\(\.org$\\)" ".txt" (buffer-file-name) nil nil 1) t))))
 
-(write-region nil nil "c:/Users/kamesuke42/Desktop/test.txt" t)
-
-(add-hook 'after-save-hook 'my-after-save-actions)
+(add-hook 'after-save-hook 'convert-org-to-txt)
