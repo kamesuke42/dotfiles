@@ -9,6 +9,7 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -64,3 +65,11 @@ eval "$(pyenv init -)"
 
 alias j="source $HOME/.local/share/bin/zjump"
 alias gtop="source $HOME/.local/share/bin/gtop.sh"
+eval "$(~/.rbenv/bin/rbenv init - zsh)"
+
+# bun completions
+[ -s "/home/kamesuke42/.bun/_bun" ] && source "/home/kamesuke42/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
