@@ -151,16 +151,7 @@ return {
       "folke/trouble.nvim",
     },
     config = function()
-      local servers = {
-        "denols",
-        "lua_ls",
-        "html",
-        "gopls",
-        "rust_analyzer",
-        "tsserver",
-        "pyright",
-        "ruby_ls",
-      }
+      local servers = {}
       local mason_lspconfig = require("mason-lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -272,7 +263,7 @@ return {
       ts_update()
 
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "go", "lua", "html", "javascript", "css", "astro", "ruby" },
+        ensure_installed = {},
         autotag = {
           enable = true,
         },
