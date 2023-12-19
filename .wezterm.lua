@@ -57,7 +57,7 @@ return {
   macos_window_background_blur = 20,
 
   -- Key configuration
-  leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
+  leader = { key = "s", mods = "CTRL", timeout_milliseconds = 1000 },
   keys = {
     { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
     { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
