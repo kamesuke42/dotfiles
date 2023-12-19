@@ -1,0 +1,109 @@
+(defvar elpaca-installer-version 0.6)
+(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+(defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
+(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
+                              :ref nil
+                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
+                              :build (:not elpaca--activate-package)))
+(let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
+       (build (expand-file-name "elpaca/" elpaca-builds-directory))
+       (order (cdr elpaca-order))
+       (default-directory repo))
+  (add-to-list 'load-path (if (file-exists-p build) build repo))
+  (unless (file-exists-p repo)
+    (make-directory repo t)
+    (when (< emacs-major-version 28) (require 'subr-x))
+    (condition-case-unless-debug err
+        (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                 ((zerop (call-process "git" nil buffer t "clone"
+                                       (plist-get order :repo) repo)))
+                 ((zerop (call-process "git" nil buffer t "checkout"
+                                       (or (plist-get order :ref) "--"))))
+                 (emacs (concat invocation-directory invocation-name))
+                 ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                       "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+                 ((require 'elpaca))
+                 ((elpaca-generate-autoloads "elpaca" repo)))
+            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+          (error "%s" (with-current-buffer buffer (buffer-string))))
+      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+  (unless (require 'elpaca-autoloads nil t)
+    (require 'elpaca)
+    (elpaca-generate-autoloads "elpaca" repo)
+    (load "./elpaca-autoloads")))
+(add-hook 'after-init-hook #'elpaca-process-queues)
+(elpaca `(,@elpaca-order))
+
+(setq elpaca-queue-limit 15)
+
+(elpaca elpaca-use-package
+  (elpaca-use-package-mode)
+  (setq elpaca-use-package-by-default t))
+(elpaca general)
+
+(elpaca-wait)
+
+(use-package catppuccin-theme
+  :init (load-theme 'catppuccin t))
+
+(use-package company)
+(use-package company-quickhelp)
+(use-package bind-key)
+(use-package eglot)
+
+(setq company-minimum-prefix-length 2)
+(setq company-selection-wrap-around t)
+(bind-key "C-M-i" 'company-complete)
+(bind-key "C-h" nil company-active-map)
+(bind-key "C-n" 'company-select-next company-active-map)
+(bind-key "C-p" 'company-select-previous company-active-map)
+(bind-key "C-n" 'company-select-next company-search-map)
+(bind-key "C-p" 'company-select-previous company-search-map)
+(bind-key "<tab>" 'company-complete-common-or-cycle company-active-map)
+(bind-key "<backtab>" 'company-select-previous company-active-map)
+(bind-key "C-i" 'company-completion-selection company-active-map)
+(bind-key "M-d" 'company-show-doc-buffer company-active-map)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-tooltip-maximum-width 50)
+
+;; company-quickhelp
+(setq company-quickhelp-color-foreground "white")
+(setq company-quickhelp-color-background "dark slate gray")
+(setq company-quickhelp-max-lines 5)
+(company-quickhelp-mode)
+
+
+;;(with-eval-after-load 'eglot
+;;  (add-to-list 'eglot-server-programs
+;;	       '((ruby-mode ruby-ts-mode) "solargraph")))
+
+;; fuzzy finder
+(elpaca projectile
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+(require 'recentf)
+
+;; Git
+(elpaca magit)
+
+;; Ruby
+(add-hook 'ruby-mode-hook 'eglot-ensure)
+;; (projectile-rails-global-mode)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; general settings
+(prefer-coding-system 'utf-8)
+(setq coding-system-for-read 'utf-8)
+(setq coding-system-for-write 'utf-8)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+
+(provide 'init)
