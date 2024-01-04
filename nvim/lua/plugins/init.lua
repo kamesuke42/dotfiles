@@ -151,6 +151,7 @@ return {
       "folke/trouble.nvim",
     },
     config = function()
+      local lspconfig = require("lspconfig")
       local servers = {}
       local mason_lspconfig = require("mason-lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -203,7 +204,11 @@ return {
         debounce_text_changes = 150,
       }
 
-      require("lspconfig").ruby_ls.setup{}
+      lspconfig.ruby_ls.setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities
+      }
 
       mason_lspconfig.setup_handlers({
         function(server_name)
