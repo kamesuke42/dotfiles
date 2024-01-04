@@ -202,6 +202,9 @@ return {
         -- This is the default in Nvim 0.7+
         debounce_text_changes = 150,
       }
+
+      require("lspconfig").ruby_ls.setup{}
+
       mason_lspconfig.setup_handlers({
         function(server_name)
           if server_name ~= "" then
