@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Package manager
+
+# Check command
+if type "brew" > /dev/null 2>&1; then
+    echo -e "brew command: \x1B[1;32mFound\x1B[0m"
+else
+    echo -e "brew command: \x1B[1;31mNot found\x1B[0m"
+    echo "Install Homebrew and rerun this script."
+    exit
+fi
+
+
+brew bundle
+
+if [ -f $HOME/.wezterm.lua ]; then
+    echo -e "wezterm.lua: \x1B[1;32mFound\x1B[0m"
+else
+    ln -s $PWD/.wezterm.lua $HOME/.wezterm.lua
+    echo -e "wezterm.lua: \x1B[1;36mcreated symlink\x1B[0m"
+fi
+
+# fish
