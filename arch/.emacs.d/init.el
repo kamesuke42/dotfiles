@@ -37,6 +37,10 @@
 
 (setq elpaca-queue-limit 15)
 
+;; https://github.com/progfolio/elpaca/blob/master/README.md#L79
+(when (eq system-type 'windows-nt)
+  (elpaca-no-symlink-mode))
+
 (elpaca elpaca-use-package
   (elpaca-use-package-mode)
   (setq elpaca-use-package-by-default t))
@@ -55,16 +59,16 @@
 (setq company-minimum-prefix-length 2)
 (setq company-selection-wrap-around t)
 (bind-key "C-M-i" 'company-complete)
-(bind-key "C-h" nil company-active-map)
-(bind-key "C-n" 'company-select-next company-active-map)
-(bind-key "C-p" 'company-select-previous company-active-map)
-(bind-key "C-n" 'company-select-next company-search-map)
-(bind-key "C-p" 'company-select-previous company-search-map)
-(bind-key "<tab>" 'company-complete-common-or-cycle company-active-map)
-(bind-key "<backtab>" 'company-select-previous company-active-map)
-(bind-key "C-i" 'company-completion-selection company-active-map)
-(bind-key "M-d" 'company-show-doc-buffer company-active-map)
-(add-hook 'after-init-hook 'global-company-mode)
+;; (bind-key "C-h" nil company-active-map)
+;; (bind-key "C-n" 'company-select-next company-active-map)
+;; (bind-key "C-p" 'company-select-previous company-active-map)
+;; (bind-key "C-n" 'company-select-next company-search-map)
+;; (bind-key "C-p" 'company-select-previous company-search-map)
+;; (bind-key "<tab>" 'company-complete-common-or-cycle company-active-map)
+;; (bind-key "<backtab>" 'company-select-previous company-active-map)
+;; (bind-key "C-i" 'company-completion-selection company-active-map)
+;; (bind-key "M-d" 'company-show-doc-buffer company-active-map)
+;; (add-hook 'after-init-hook 'global-company-mode)
 (setq company-tooltip-maximum-width 50)
 
 ;; company-quickhelp
@@ -72,7 +76,6 @@
 (setq company-quickhelp-color-background "dark slate gray")
 (setq company-quickhelp-max-lines 5)
 (company-quickhelp-mode)
-
 
 ;;(with-eval-after-load 'eglot
 ;;  (add-to-list 'eglot-server-programs
@@ -85,18 +88,45 @@
 (require 'recentf)
 
 ;; Git
-(elpaca magit)
+(elpaca magit
+  (global-set-key (kbd "C-x g") 'magit-status))
 
 ;; Ruby
 (add-hook 'ruby-mode-hook 'eglot-ensure)
 ;; (projectile-rails-global-mode)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; Setting for org-mode
+(setq org-directory "~/OneDrive/org")
+(setq org-agenda-files (list "inbox.org" "agenda.org"))
+(setq org-capture-templates
+      `(("i" "Inbox" entry (file "inbox.org"))))
+(define-key global-map (kbd "C-c i") 'org-capture-inbox)
+
+(define-key global-map (kbd "C-c a") 'org-agenda)
+(setq org-agenda-hide-tags-regexp ".")
+(setq org-agenda-prefix-format
+      '((agenda . " %i %-12:c%?-12t% s")
+        (todo   . " ")
+        (tags   . " %i %-12:c")
+        (search . " %i %-12:c")))
+
+(elpaca org-roam)
+
+(elpaca vertico)
+(elpaca consult-codesearch)
+(elpaca consult-company)
+(elpaca consult-dir)
+(elpaca consult-eglot)
+(elpaca consult-flycheck)
+(elpaca consult-ghq)
+(elpaca consult-ls-git)
+(elpaca consult-lsp)
+(elpaca consult-org-roam)
+(elpaca consult-projectile)
+(elpaca marginalia)
+(elpaca orderless)
+(elpaca embark)
+(elpaca embark-consult)
 
 ;; general settings
 (prefer-coding-system 'utf-8)
