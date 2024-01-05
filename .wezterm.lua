@@ -41,13 +41,15 @@ end)
 
 return {
   font = wezterm.font_with_fallback({
+    { family = "0xProto", weight = "Regular", style = "Normal" },
+    { family = "HackGen Console NF", weight = "Regular", style = "Normal" },
+    { family = "HackGen Console NF", weight = "Bold", style = "Normal" },
     { family = "Cica", weight = "Regular", style = "Normal" },
     { family = "Cica", weight = "Bold", style = "Normal" },
-    { family = "0xProto", weight = "Regular", style = "Normal" },
   }),
   font_size = 12.0,
   color_scheme = "Catppuccin Mocha",
-  initial_cols = 170,
+  initial_cols = 100,
   initial_rows = 50,
   status_update_interval = 1000,
 
