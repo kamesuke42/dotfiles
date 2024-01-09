@@ -44,7 +44,7 @@
 (elpaca elpaca-use-package
   (elpaca-use-package-mode)
   (setq elpaca-use-package-by-default t))
-(elpaca general)
+;; (elpaca general)
 
 (elpaca-wait)
 
@@ -53,12 +53,13 @@
 
 (use-package company)
 (use-package company-quickhelp)
-(use-package bind-key)
+;; (elpaca bind-key
+;;   (require 'bind-key))
 (use-package eglot)
 
 (setq company-minimum-prefix-length 2)
 (setq company-selection-wrap-around t)
-(bind-key "C-M-i" 'company-complete)
+;; (bind-key "C-M-i" 'company-complete)
 ;; (bind-key "C-h" nil company-active-map)
 ;; (bind-key "C-n" 'company-select-next company-active-map)
 ;; (bind-key "C-p" 'company-select-previous company-active-map)
@@ -75,7 +76,7 @@
 (setq company-quickhelp-color-foreground "white")
 (setq company-quickhelp-color-background "dark slate gray")
 (setq company-quickhelp-max-lines 5)
-(company-quickhelp-mode)
+;; (company-quickhelp-mode)
 
 ;;(with-eval-after-load 'eglot
 ;;  (add-to-list 'eglot-server-programs
@@ -97,7 +98,9 @@
 
 ;; Setting for org-mode
 (setq org-directory "~/OneDrive/org")
-(setq org-agenda-files (list "inbox.org" "agenda.org"))
+(setq org-agenda-files (list "inbox.org" "agenda.org" "tasks.org"))
+
+(setq org-default-notes-file (concat org-directory "/tasks.org"))
 (setq org-capture-templates
       `(("i" "Inbox" entry (file "inbox.org"))))
 (define-key global-map (kbd "C-c i") 'org-capture-inbox)
@@ -129,9 +132,15 @@
 (elpaca embark-consult)
 
 ;; general settings
-(prefer-coding-system 'utf-8)
-(setq coding-system-for-read 'utf-8)
-(setq coding-system-for-write 'utf-8)
+(set-default-coding-systems 'utf-8-unix)
+(prefer-coding-system 'utf-8-unix)
+(set-selection-coding-system 'utf-8-unix)
+(set-buffer-file-coding-system 'utf-8-unix)
+(set-file-name-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8-unix)
+(set-keyboard-coding-system 'utf-8-unix)
+(setq locale-coding-system 'utf-8-unix)
+
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
